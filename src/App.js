@@ -2,15 +2,18 @@ import React from 'react';
 import {Card, Container} from 'react-bootstrap';
 
 import {ContextData} from './context/index';
+import {dateFormat} from './utils/helper';
 import Navigation from './components/Navbar';
 import MainDashboard from './components/mainDashboard';
 import DataTable from './components/DataTable';
+import Chart from './components/Chart';
 
 class App extends React.Component {
   static contextType = ContextData;
 
   render() {
     const {worldWide, localCase} = this.context.data;
+    console.table(localCase);
     return (
       <>
         <Navigation />
@@ -18,14 +21,33 @@ class App extends React.Component {
         <MainDashboard data={worldWide} title={'Total case worldwide'} />
 
         {/* Local Dashboard */}
-        <MainDashboard data={localCase} title={'Total case Indonesia'} />
+        <Container className="mt-5">
+          <Card>
+            <Card.Header className="text-center">
+              {' '}
+              <Card.Title>
+                {' '}
+                <h5 className="font-weight-bold">Indonesia</h5>
+              </Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Chart />
+            </Card.Body>
+            <Card.Footer className="text-muted">
+              Last update : {localCase && localCase.lastUpdate && dateFormat(localCase.lastUpdate)}
+            </Card.Footer>
+          </Card>
+        </Container>
+
+        {/* <MainDashboard data={localCase} title={'Total case Indonesia'} /> */}
 
         {/* Data over All the wolrd */}
         <Container className="mt-5">
           <Card>
             <Card.Header className="text-center">
-              {' '}
-              <Card.Title>Data Global</Card.Title>
+              <Card.Title>
+                <h5 className="font-weight-bold">Global</h5>
+              </Card.Title>
             </Card.Header>
             <Card.Body>
               <DataTable />

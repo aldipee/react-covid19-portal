@@ -16,6 +16,7 @@ export default class mainDashboard extends Component {
               lineColor="primary"
               titleCard="Case Confirmed"
               value={data && data.caseConfirmed && angkaKoma(data.caseConfirmed)}
+              fontColor="text-warning"
             />
           </Col>
           <Col>
@@ -23,6 +24,7 @@ export default class mainDashboard extends Component {
               lineColor="success"
               titleCard="Recovery"
               value={data && data.healConfirmed && angkaKoma(data.healConfirmed)}
+              fontColor="text-success"
             />
           </Col>
           <Col>
@@ -30,6 +32,7 @@ export default class mainDashboard extends Component {
               lineColor="danger"
               titleCard="Deaths"
               value={data && data.deathConfirmed && angkaKoma(data.deathConfirmed)}
+              fontColor="text-danger"
             />
           </Col>
         </Row>

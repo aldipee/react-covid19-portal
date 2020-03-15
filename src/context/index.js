@@ -14,6 +14,7 @@ export default class Provider extends Component {
       caseConfirmed: 0,
       deathConfirmed: 0,
       healConfirmed: 0,
+      lastUpdate: 0,
     },
     dataTable: [],
     isLoading: true,
@@ -43,6 +44,7 @@ export default class Provider extends Component {
           caseConfirmed: data.confirmed.value,
           deathConfirmed: data.deaths.value,
           healConfirmed: data.recovered.value,
+          lastUpdate: data.lastUpdate,
         },
       });
     });
