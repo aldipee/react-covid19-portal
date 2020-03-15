@@ -1,62 +1,39 @@
 import React from 'react';
+import {Card, Container} from 'react-bootstrap';
 
-import * as APIData from './utils/dataApi'
-import Navigation from './components/Navbar'
+import {ContextData} from './context/index';
+import Navigation from './components/Navbar';
 import MainDashboard from './components/mainDashboard';
-
+import DataTable from './components/DataTable';
 
 class App extends React.Component {
-
-  state = {
-    worldWide: {
-      caseConfirmed: 0,
-      deathConfirmed: 0,
-      healConfirmed: 0,
-    },
-    localCase: {
-      caseConfirmed: 0,
-      deathConfirmed: 0,
-      healConfirmed: 0,
-    },
-    isLoading: true
-  }
-
-  loadData() {
-    APIData.worldWideData().then(data => {
-      this.setState({
-        worldWide: {
-          caseConfirmed: data.confirmed.value,
-          deathConfirmed: data.deaths.value,
-          healConfirmed: data.recovered.value,
-        }
-      })
-    })
-    APIData.localData().then(data => {
-      this.setState({
-        localCase: {
-          caseConfirmed: data.confirmed.value,
-          deathConfirmed: data.deaths.value,
-          healConfirmed: data.recovered.value,
-        }
-      })
-    })
-  }
-
-  componentDidMount() {
-    this.loadData()
-  }
+  static contextType = ContextData;
 
   render() {
+    const {worldWide, localCase} = this.context.data;
     return (
       <>
         <Navigation />
         {/* World Wide Dashboard */}
-        <MainDashboard {...this.state.worldWide} title={'Total case worldwide'} />
+        <MainDashboard data={worldWide} title={'Total case worldwide'} />
 
         {/* Local Dashboard */}
-        <MainDashboard {...this.state.localCase} title={'Total case Indonesia'} />
+        <MainDashboard data={localCase} title={'Total case Indonesia'} />
+
+        {/* Data over All the wolrd */}
+        <Container className="mt-5">
+          <Card>
+            <Card.Header className="text-center">
+              {' '}
+              <Card.Title>Data Global</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <DataTable />
+            </Card.Body>
+          </Card>
+        </Container>
       </>
-    )
+    );
   }
 }
 
