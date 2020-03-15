@@ -8,7 +8,7 @@ export default class mainDashboard extends Component {
   render() {
     const {data} = this.props;
     return (
-      <Container className="mt-5">
+      <Container className="">
         <h3>{this.props.title}</h3>
         <Row>
           <Col>

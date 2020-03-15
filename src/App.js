@@ -18,7 +18,23 @@ class App extends React.Component {
       <>
         <Navigation />
         {/* World Wide Dashboard */}
-        <MainDashboard data={worldWide} title={'Total case worldwide'} />
+        <Container className="mt-5">
+          <Card>
+            <Card.Header className="text-center">
+              {' '}
+              <Card.Title>
+                {' '}
+                <h5 className="font-weight-bold">Total case worldwide</h5>
+              </Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <MainDashboard data={worldWide} />
+            </Card.Body>
+            <Card.Footer className="text-muted">
+              Last update : {worldWide && worldWide.lastUpdate && dateFormat(worldWide.lastUpdate)}
+            </Card.Footer>
+          </Card>
+        </Container>
 
         {/* Local Dashboard */}
         <Container className="mt-5">
