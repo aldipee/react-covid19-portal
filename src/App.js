@@ -21,9 +21,7 @@ class App extends React.Component {
         <Container className="mt-5">
           <Card>
             <Card.Header className="text-center">
-              {' '}
               <Card.Title>
-                {' '}
                 <h5 className="font-weight-bold">Total case worldwide</h5>
               </Card.Title>
             </Card.Header>

@@ -4,16 +4,15 @@ import {Table} from 'react-bootstrap';
 import ItemTable from './ItemTable';
 export default class DataTable extends Component {
   render() {
+    const titleTable = ['Lokasi', 'Terinfeksi', 'Pulih', 'Meninggal', 'Last Update'];
     return (
       <div className="table-scroll">
         <Table striped>
           <thead>
             <tr>
-              <th>Lokasi </th>
-              <th>Terinfeksi</th>
-              <th>Pulih</th>
-              <th>Meninggal</th>
-              <th>Last Update</th>
+              {titleTable.map((data, index) => (
+                <th>{data}</th>
+              ))}
             </tr>
           </thead>
           <ItemTable />
